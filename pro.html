@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Notes</title>
+  <style>
+    #input-container {
+      margin-bottom: 10px;
+    }
+
+    #grocery-list li {
+      list-style-type: none;
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div id="input-container">
+    <input type="text" id="item-input" placeholder="Enter an item" />
+    <button onclick="addItem()">Add</button>
+    <button onclick="submitItems()">Submit</button>
+  </div>
+  
+  <ul id="grocery-list"></ul>
+
+  <script>
+    var items = [];
+
+    function addItem() {
+      var input = document.getElementById('item-input');
+      var item = input.value;
+
+      if (item !== '') {
+        items.push(item);
+        input.value = '';
+      }
+    }
+
+    function submitItems() {
+      var groceryList = document.getElementById('grocery-list');
+      groceryList.innerHTML = '';
+
+      for (var i = 0; i < items.length; i++) {
+        var listItem = document.createElement('li');
+        listItem.appendChild(document.createTextNode(items[i]));
+        groceryList.appendChild(listItem);
+      }
+
+      items = [];
+    }
+  </script>
+</body>
+</html>
